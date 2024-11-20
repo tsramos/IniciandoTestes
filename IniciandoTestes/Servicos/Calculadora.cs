@@ -1,11 +1,11 @@
-﻿namespace IniciandoTestes
+﻿namespace IniciandoTestes.Servicos
 {
     using System;
     public class Calculadora
     {
-        public double SomarNumeros(double n1, double n2) 
-        {            
-            if(n1 < 0 || n2 < 0)
+        public double SomarNumeros(double n1, double n2)
+        {
+            if (n1 < 0 || n2 < 0)
             {
                 return -1;
             }

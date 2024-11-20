@@ -1,5 +1,5 @@
 using Xunit;
-using IniciandoTestes;
+using IniciandoTestes.Servicos;
 
 namespace IniciandoTestes.Tests
 {

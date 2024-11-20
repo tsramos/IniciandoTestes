@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using System;
-namespace IniciandoTestes
+﻿using System;
+using IniciandoTestes.Entidades;
+namespace IniciandoTestes.Servicos
 {
     public class FuncionarioService
     {

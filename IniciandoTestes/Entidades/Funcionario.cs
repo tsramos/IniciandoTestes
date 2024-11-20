@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace IniciandoTestes
+namespace IniciandoTestes.Entidades
 {
     public class Funcionario
     {

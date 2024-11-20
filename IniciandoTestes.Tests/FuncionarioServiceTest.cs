@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System;
 using Xunit;
+using IniciandoTestes.Entidades;
+using IniciandoTestes.Servicos;
 
 namespace IniciandoTestes.Tests
 {
