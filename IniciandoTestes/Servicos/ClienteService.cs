@@ -22,12 +22,18 @@ namespace IniciandoTestes.Servicos
             }
 
             var clienteBd = _clienteRepository.GetCliente(cliente.Id);
+
             if (clienteBd?.Id == cliente.Id)
-            {
+            {              
                 throw new Exception("Cliente já existe no banco de dados.");
             }
 
             _clienteRepository.AddCliente(cliente);
+        }
+
+        public string ExemploAtrasadinhoQueNaoAvisaEDepoisEncheOSaco()
+        {
+            return "Responda a mensagem na proxima vez";
         }
     }
 }

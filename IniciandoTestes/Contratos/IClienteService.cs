@@ -8,5 +8,7 @@ namespace IniciandoTestes.Contratos
     internal interface IClienteService
     {
         void AddClliente(Cliente cliente);
+
+        string ExemploAtrasadinhoQueNaoAvisaEDepoisEncheOSaco();
     }
 }
