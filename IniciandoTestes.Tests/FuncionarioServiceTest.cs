@@ -4,6 +4,7 @@ using System;
 using Xunit;
 using IniciandoTestes.Entidades;
 using IniciandoTestes.Servicos;
+using IniciandoTestes.Tests.MotherObjects;
 
 namespace IniciandoTestes.Tests
 {
@@ -34,31 +35,17 @@ namespace IniciandoTestes.Tests
 
             yield return new object[]
             {
-                new Funcionario()
-                {
-                    Nome = faker.Name.FullName(),
-                    Nascimento = faker.Date.Between(DateTime.Now.AddDays(-21), DateTime.Now.AddDays(-50)),
-                    Senioridade = Senioridade.Junior,
-                    Salario = faker.Random.Double(3200,5500)
-                }
+               FuncionarioMother.GetFuncionarioValidoPorSenioridade(Senioridade.Junior)
             };
 
-            yield return new object[] { new Funcionario()
-                {
-                    Nome = faker.Name.FullName(),
-                    Nascimento = faker.Date.Between(DateTime.Now.AddDays(-21), DateTime.Now.AddDays(-50)),
-                    Senioridade = Senioridade.Pleno,
-                    Salario = faker.Random.Double(5500,8000)
-                }
+            yield return new object[] 
+            {
+                FuncionarioMother.GetFuncionarioValidoPorSenioridade(Senioridade.Pleno)
             };
 
-            yield return new object[] { new Funcionario()
+            yield return new object[]
                 {
-                    Nome = faker.Name.FullName(),
-                    Nascimento = faker.Date.Between(DateTime.Now.AddDays(-21), DateTime.Now.AddDays(-50)),
-                    Senioridade = Senioridade.Senior,
-                    Salario = faker.Random.Double(8000,20000)
-                }
+                FuncionarioMother.GetFuncionarioValidoPorSenioridade(Senioridade.Senior)
             };
         }
     }

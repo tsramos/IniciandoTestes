@@ -2,6 +2,7 @@
 using IniciandoTestes.Contratos;
 using IniciandoTestes.Entidades;
 using IniciandoTestes.Servicos;
+using IniciandoTestes.Tests.MotherObjects;
 using Moq;
 using System;
 using Xunit;
@@ -18,12 +19,7 @@ namespace IniciandoTestes.Tests
             clienteRepositoryMock.Setup(x => x.GetCliente(It.IsAny<Guid>())).Returns(new Cliente());
             ClienteService sut = new ClienteService(clienteRepositoryMock.Object);
             Faker faker = new Faker();
-            Cliente cliente = new Cliente()
-            {
-                Id = Guid.NewGuid(),
-                Nome = faker.Name.FullName(),
-                Nascimento = new DateTime(1900, 12, 12)
-            };
+            var cliente = ClienteMother.GetClienteValido();
 
             //Act
 
@@ -53,12 +49,7 @@ namespace IniciandoTestes.Tests
         {
             //Arrange
             Faker faker = new Faker();
-            Cliente cliente = new Cliente()
-            {
-                Nome = faker.Name.FullName(),
-                Nascimento = new System.DateTime(1900, 12, 12),
-                Id = Guid.NewGuid(),
-            };
+            Cliente cliente = ClienteMother.GetClienteSemId();
 
             Mock<IClienteRepository> clienteRepositoryMock = new Mock<IClienteRepository>();
             clienteRepositoryMock.Setup(x => x.GetCliente(It.IsAny<Guid>())).Returns(cliente);

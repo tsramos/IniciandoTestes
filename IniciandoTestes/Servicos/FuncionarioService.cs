@@ -16,7 +16,7 @@ namespace IniciandoTestes.Servicos
                 throw new FormatException("Formato incorreto de nome.");
             }
 
-            if (funcionario.Nascimento < DateTime.Now.AddYears(-50))
+            if (funcionario.Nascimento > DateTime.Now.AddYears(-21))
             {
                 throw new Exception("Funcionario muito novo para o cargo");
             }
