@@ -46,7 +46,6 @@ namespace IniciandoTestes.Tests
             var resultadoEsperado = "Responda a mensagem na proxima vez";
             Assert.NotNull(result);
             Assert.Equal(resultadoEsperado, result);
-
         }
 
         [Fact]
