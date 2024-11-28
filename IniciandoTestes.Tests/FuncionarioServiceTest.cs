@@ -1,10 +1,10 @@
 ﻿using Bogus;
-using System.Collections.Generic;
-using System;
-using Xunit;
 using IniciandoTestes.Entidades;
 using IniciandoTestes.Servicos;
+using IniciandoTestes.Tests.Builder;
 using IniciandoTestes.Tests.MotherObjects;
+using System.Collections.Generic;
+using Xunit;
 
 namespace IniciandoTestes.Tests
 {
@@ -30,9 +30,7 @@ namespace IniciandoTestes.Tests
         }
 
         public static IEnumerable<object[]> GetFuncionariosData()
-        {
-            var faker = new Faker();
-
+        {            
             yield return new object[]
             {
                FuncionarioMother.GetFuncionarioValidoPorSenioridade(Senioridade.Junior)
@@ -40,8 +38,11 @@ namespace IniciandoTestes.Tests
 
             yield return new object[] 
             {
-                FuncionarioMother.GetFuncionarioValidoPorSenioridade(Senioridade.Pleno)
-            };
+                new FuncionarioBuilder().ComNome()
+                                        .ComNascimento()
+                                        .ComSalarioValido(Senioridade.Pleno)
+                                        .Build()
+            }; 
 
             yield return new object[]
                 {
