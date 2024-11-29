@@ -17,7 +17,6 @@ namespace IniciandoTestes.Tests
             _faker = new Faker();
         }
 
-
         [Theory]
         [MemberData(nameof(GetFuncionariosData))]
         public void AdicionarFuncionario_DeveConcluir_QuandoDadosValidos(Funcionario funcionario)

@@ -11,35 +11,42 @@ namespace IniciandoTestes.Tests
 {
     public class ClienteServiceTest
     {
+        private readonly Faker _faker;
+        private readonly Mock<IClienteRepository> _mockRepository;
+        private readonly ClienteService _sut;
+
+        public ClienteServiceTest()
+        {
+            _faker = new Faker();
+            _mockRepository = new Mock<IClienteRepository>();
+            _sut = new ClienteService(_mockRepository.Object);
+        }
+
         [Fact]
         public void AdicionarCLiente_DeveAdicionarComSucesso_QuandoClienteValido()
         {
             //Arrange
-            Mock<IClienteRepository> clienteRepositoryMock = new Mock<IClienteRepository>();
-            clienteRepositoryMock.Setup(x => x.GetCliente(It.IsAny<Guid>())).Returns(new Cliente());
-            ClienteService sut = new ClienteService(clienteRepositoryMock.Object);
-            Faker faker = new Faker();
+            _mockRepository.Setup(x => x.GetCliente(It.IsAny<Guid>())).Returns(new Cliente());                        
             var cliente = ClienteMother.GetClienteValido();
 
             //Act
-
-            sut.AddClliente(cliente);
+            _sut.AddClliente(cliente);
 
             //Assert
-
-            clienteRepositoryMock.Verify(x => x.GetCliente(It.IsAny<Guid>()), Times.Once());
-            clienteRepositoryMock.Verify(x => x.AddCliente(cliente), Times.Once());
-
+            _mockRepository.Verify(x => x.GetCliente(It.IsAny<Guid>()), Times.Once());
+            _mockRepository.Verify(x => x.AddCliente(cliente), Times.Once());
         }
 
         [Fact]
         public void TesteEx()
         {
-            Mock<IClienteRepository> mock = new Mock<IClienteRepository>();
-            ClienteService clienteService = new ClienteService(mock.Object);
-
-            var result = clienteService.ExemploAtrasadinhoQueNaoAvisaEDepoisEncheOSaco();
+            //Arrange
             var resultadoEsperado = "Responda a mensagem na proxima vez";
+
+            //Act
+            var result = _sut.ExemploAtrasadinhoQueNaoAvisaEDepoisEncheOSaco();
+
+            //Assert
             Assert.NotNull(result);
             Assert.Equal(resultadoEsperado, result);
         }
@@ -47,17 +54,13 @@ namespace IniciandoTestes.Tests
         [Fact]
         public void AddCliente_DeveQuebrar_QuandoClienteJaExiste()
         {
-            //Arrange
-            Faker faker = new Faker();
+            //Arrange            
             Cliente cliente = ClienteMother.GetClienteSemId();
-
-            Mock<IClienteRepository> clienteRepositoryMock = new Mock<IClienteRepository>();
-            clienteRepositoryMock.Setup(x => x.GetCliente(It.IsAny<Guid>())).Returns(cliente);
-
-            ClienteService sut = new ClienteService(clienteRepositoryMock.Object);
+                        
+            _mockRepository.Setup(x => x.GetCliente(It.IsAny<Guid>())).Returns(cliente);            
 
             //Act - Assert   // x => x.  -- () => 
-            Assert.Throws<Exception>(() => sut.AddClliente(cliente));
+            Assert.Throws<Exception>(() => _sut.AddClliente(cliente));
         }
     }
 }
